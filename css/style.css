@@ -120,6 +120,8 @@ ul {
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* --------------------------------------------------------------------------
@@ -132,6 +134,14 @@ button, input, select, textarea {
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .section {
@@ -207,7 +217,20 @@ button, input, select, textarea {
   cursor: pointer;
   transition: all var(--transition-normal);
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 580px) {
+  .btn-lg {
+    padding: 13px 20px;
+    font-size: 0.98rem;
+  }
+  .btn-xl {
+    padding: 15px 24px;
+    font-size: 1.05rem;
+  }
 }
 
 .btn-primary {
@@ -675,6 +698,16 @@ button, input, select, textarea {
   margin-bottom: 40px;
 }
 
+@media (max-width: 580px) {
+  .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
+
 .hero-proof {
   display: flex;
   align-items: center;
@@ -919,9 +952,11 @@ button, input, select, textarea {
 
 .pricing-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 24px;
   margin-bottom: 60px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .price-card {
@@ -934,6 +969,19 @@ button, input, select, textarea {
   flex-direction: column;
   position: relative;
   transition: all var(--transition-normal);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .pricing-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .price-card {
+    padding: 26px 18px;
+  }
 }
 
 .price-card:hover {
@@ -1053,6 +1101,16 @@ button, input, select, textarea {
   text-align: center;
   margin-bottom: 36px;
   box-shadow: var(--shadow-sm);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .martarocha-banner {
+    padding: 22px 16px;
+    margin-bottom: 24px;
+  }
 }
 
 .martarocha-badge {
@@ -1090,6 +1148,16 @@ button, input, select, textarea {
   padding: 44px 30px;
   box-shadow: var(--shadow-card);
   border: 1px solid var(--border-subtle);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .fillings-box {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+  }
 }
 
 .fillings-header {
@@ -1121,8 +1189,17 @@ button, input, select, textarea {
 
 .fillings-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .fillings-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
 
 .filling-card {
@@ -1168,14 +1245,16 @@ button, input, select, textarea {
 
 .simulator-layout {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 36px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
   align-items: start;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (min-width: 992px) {
   .simulator-layout {
-    grid-template-columns: 1.35fr 1fr;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
     gap: 40px;
   }
 }
@@ -1186,10 +1265,30 @@ button, input, select, textarea {
   padding: 36px;
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-card);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .simulator-form-card {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+  }
+}
+
+.simulator-form {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .form-group {
-  margin-bottom: 24px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 22px;
 }
 
 .step-badge {
@@ -1204,20 +1303,27 @@ button, input, select, textarea {
   font-size: 0.78rem;
   font-weight: 700;
   margin-right: 6px;
+  flex-shrink: 0;
 }
 
 .form-label {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
   font-weight: 700;
   color: var(--secondary);
   font-size: 0.95rem;
   margin-bottom: 10px;
+  line-height: 1.35;
 }
 
 .form-select,
 .form-input {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 13px 16px;
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-sm);
@@ -1226,6 +1332,20 @@ button, input, select, textarea {
   font-size: 0.95rem;
   transition: all var(--transition-fast);
   outline: none;
+}
+
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b83354' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 38px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .form-select:focus,
@@ -1243,26 +1363,33 @@ button, input, select, textarea {
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 600px) {
   .form-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 /* Radio Cards para Categoria */
 .radio-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 @media (max-width: 640px) {
   .radio-cards-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
   }
 }
 
@@ -1270,6 +1397,10 @@ button, input, select, textarea {
   position: relative;
   cursor: pointer;
   display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .radio-card input {
@@ -1283,11 +1414,15 @@ button, input, select, textarea {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 16px 10px;
+  padding: 14px 10px;
   border-radius: var(--radius-md);
   border: 2px solid var(--border-medium);
   background-color: var(--bg-alt);
   transition: all var(--transition-fast);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .radio-card input:checked + .radio-card-content,
@@ -1323,6 +1458,18 @@ button, input, select, textarea {
   box-shadow: var(--shadow-lg);
   position: sticky;
   top: 105px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .simulator-summary-card {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+    position: static;
+  }
 }
 
 .summary-header {
@@ -1353,18 +1500,21 @@ button, input, select, textarea {
   padding: 10px 0;
   font-size: 0.92rem;
   border-bottom: 1px dashed var(--border-subtle);
+  gap: 12px;
 }
 
 .summary-label {
   color: var(--text-muted);
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 .summary-val {
   color: var(--secondary);
   font-weight: 700;
   text-align: right;
-  max-width: 60%;
+  max-width: 65%;
+  word-break: break-word;
 }
 
 .summary-divider {
@@ -1454,15 +1604,26 @@ button, input, select, textarea {
   border-radius: var(--radius-xl);
   padding: 36px 40px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 30px;
   align-items: center;
   box-shadow: var(--shadow-sm);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 860px) {
   .party-calc-card {
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .party-calc-card {
+    padding: 24px 16px;
+    gap: 20px;
+    border-radius: var(--radius-lg);
   }
 }
 
@@ -1620,8 +1781,17 @@ button, input, select, textarea {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 24px;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 .gallery-item {
@@ -1790,8 +1960,10 @@ button, input, select, textarea {
 
 .differentials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .diff-card {
@@ -1800,6 +1972,19 @@ button, input, select, textarea {
   background-color: var(--bg-alt);
   border: 1px solid var(--border-subtle);
   transition: all var(--transition-normal);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .differentials-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .diff-card {
+    padding: 24px 18px;
+  }
 }
 
 .diff-card:hover {
@@ -1961,8 +2146,10 @@ button, input, select, textarea {
 
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .step-card {
@@ -1973,6 +2160,19 @@ button, input, select, textarea {
   box-shadow: var(--shadow-sm);
   position: relative;
   transition: all var(--transition-normal);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .step-card {
+    padding: 24px 18px;
+  }
 }
 
 .step-card:hover {
@@ -2118,6 +2318,20 @@ button, input, select, textarea {
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--secondary);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .accordion-header {
+    padding: 16px 18px;
+    font-size: 0.98rem;
+  }
+  .accordion-body {
+    padding: 0 18px;
+  }
+  .accordion-item.active .accordion-body {
+    padding-bottom: 18px;
+  }
 }
 
 .accordion-icon {
@@ -2170,6 +2384,16 @@ button, input, select, textarea {
   box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .final-cta-card {
+    padding: 38px 20px;
+    border-radius: var(--radius-lg);
+  }
 }
 
 .final-cta-card::before {
@@ -2241,10 +2465,12 @@ button, input, select, textarea {
 
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 40px;
-  padding-bottom: 60px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 36px;
+  padding-bottom: 50px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  max-width: 100%;
 }
 
 .footer-logo {
