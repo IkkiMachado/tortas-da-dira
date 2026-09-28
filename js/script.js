@@ -49,6 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.getElementById('header');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const navMenu = document.getElementById('navMenu');
+  const navCloseBtn = document.getElementById('navCloseBtn');
+  const navOverlay = document.getElementById('navOverlay');
   const navLinks = document.querySelectorAll('.nav-link');
 
   window.addEventListener('scroll', () => {
@@ -59,26 +61,64 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
+  const openMobileMenu = () => {
+    if (!navMenu || !hamburgerBtn) return;
+    navMenu.classList.add('open');
+    hamburgerBtn.classList.add('active');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    if (navOverlay) navOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMobileMenu = () => {
+    if (!navMenu || !hamburgerBtn) return;
+    navMenu.classList.remove('open');
+    hamburgerBtn.classList.remove('active');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    if (navOverlay) navOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
   if (hamburgerBtn && navMenu) {
-    hamburgerBtn.addEventListener('click', () => {
-      const isOpen = navMenu.classList.toggle('open');
-      hamburgerBtn.classList.toggle('active', isOpen);
-      hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (navMenu.classList.contains('open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
     });
+
+    if (navCloseBtn) {
+      navCloseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeMobileMenu();
+      });
+    }
+
+    if (navOverlay) {
+      navOverlay.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    }
 
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        hamburgerBtn.classList.remove('active');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        closeMobileMenu();
       });
     });
 
+    // Fechar ao clicar fora
     document.addEventListener('click', (e) => {
       if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target) && navMenu.classList.contains('open')) {
-        navMenu.classList.remove('open');
-        hamburgerBtn.classList.remove('active');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        closeMobileMenu();
+      }
+    });
+
+    // Fechar com tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        closeMobileMenu();
       }
     });
   }
